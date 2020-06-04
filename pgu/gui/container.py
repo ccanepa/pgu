@@ -235,7 +235,7 @@ class Container(widget.Widget):
         if not used and e.type is KEYDOWN:
             if e.key is K_TAB and self.myfocus:
                 if not (e.mod & KMOD_SHIFT):
-                    next(self.myfocus)
+                    self.myfocus.next()
                 else:
                     self.myfocus.previous()
                     return True
@@ -281,7 +281,7 @@ class Container(widget.Widget):
             if dy_ < 0 and wrect.bottom > rect.top: continue
             dist.append((dx*dx+dy*dy,w))
         if not len(dist): return
-        dist.sort()
+        dist.sort(key=lambda e: e[0])
         d,w = dist.pop(0)
         w.focus()
 
@@ -339,6 +339,7 @@ class Container(widget.Widget):
         if self.myfocus: self.blur(self.myfocus)
         if self.myhover is not w: self.enter(w)
         self.myfocus = w
+        print("C focus:", w.dname)
         w._event(pygame.event.Event(FOCUS))
 
         #print self.myfocus,self.myfocus.__class__.__name__
