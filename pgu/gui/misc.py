@@ -21,7 +21,7 @@ class ProgressBar(widget.Widget):
     def paint(self,s):
         if (self.value != None):
             r = pygame.rect.Rect(0,0,self.rect.w,self.rect.h)
-            r.w = r.w*(self.value-self.min)/(self.max-self.min)
+            r.w = r.w*(self.value-self.min)//(self.max-self.min)
             self.bar = r
             pguglobals.app.theme.render(s,self.style.bar,r)
         

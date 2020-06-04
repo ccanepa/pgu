@@ -13,7 +13,7 @@ def _ani_load(tv,name,parts,frames,shape):
     l = len(frames)
     n = parts.pop()
     if len(parts):
-        s = l/n
+        s = l//n
         for i in range(0,n):
             _ani_load(tv,name + ".%d"%i,parts[:],frames[s*i:s*(i+1)],shape)
         return
@@ -65,17 +65,17 @@ def image_rotate(tv,name,img,shape,angles,diff=0):
         w2,h2 = img2.get_width(),img2.get_height()
         minx,miny,maxx,maxy = 1024,1024,0,0
         for x,y in ps:
-            x,y = x-w1/2,y-h1/2
+            x,y = x-w1//2,y-h1//2
             a2 = math.radians(a+diff)
             #NOTE: the + and - are switched from the normal formula because of
             #the weird way that pygame does the angle...
             x2 = x*math.cos(a2) + y*math.sin(a2)
             y2 = y*math.cos(a2) - x*math.sin(a2)
-            x2,y2 = x2+w2/2,y2+h2/2
+            x2,y2 = x2+w2//2,y2+h2//2
             minx = min(minx,x2)
             miny = min(miny,y2)
             maxx = max(maxx,x2)
             maxy = max(maxy,y2)
         r = pygame.Rect(minx,miny,maxx-minx,maxy-miny)
-        #((ww-w)/2,(hh-h)/2,w,h)
+        #((ww-w)//2,(hh-h)//2,w,h)
         tv.images["%s.%d"%(name,a)] = img2,r

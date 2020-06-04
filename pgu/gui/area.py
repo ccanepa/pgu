@@ -255,7 +255,7 @@ class ScrollArea(table.Table):
             hs.min = 0
             hs.max = widget.rect.w - box.style.width
             hs.style.width = box.style.width
-            hs.size = hs.style.width * box.style.width / max(1,widget.rect.w)
+            hs.size = hs.style.width * box.style.width // max(1,widget.rect.w)
         else:
             box.offset[0] = 0
             
@@ -264,7 +264,7 @@ class ScrollArea(table.Table):
             vs.min = 0
             vs.max = widget.rect.h - box.style.height
             vs.style.height = box.style.height
-            vs.size = vs.style.height * box.style.height / max(1,widget.rect.h)
+            vs.size = vs.style.height * box.style.height // max(1,widget.rect.h)
         else:
             box.offset[1] = 0
             
@@ -279,23 +279,23 @@ class ScrollArea(table.Table):
             if self.widget.rect.w <= self.sbox.rect.w:
                 self.hscrollbar.size = self.hscrollbar.style.width
             else:
-                self.hscrollbar.size = max(20,self.hscrollbar.style.width * self.sbox.rect.w / self.widget.rect.w)
+                self.hscrollbar.size = max(20,self.hscrollbar.style.width * self.sbox.rect.w // self.widget.rect.w)
             self._hscrollbar_changed(None)
         if self.widget.rect.h <= self.sbox.rect.h: 
             self.vscrollbar.size = self.vscrollbar.style.height
         else:
-            self.vscrollbar.size = max(20,self.vscrollbar.style.height * self.sbox.rect.h / self.widget.rect.h)
+            self.vscrollbar.size = max(20,self.vscrollbar.style.height * self.sbox.rect.h // self.widget.rect.h)
         self._vscrollbar_changed(None)
         return w,h
 
     def _vscrollbar_changed(self, xxx):
-        #y = (self.widget.rect.h - self.sbox.rect.h) * self.vscrollbar.value / 1000
+        #y = (self.widget.rect.h - self.sbox.rect.h) * self.vscrollbar.value // 1000
         #if y >= 0: self.sbox.offset[1] = -y
         self.sbox.offset[1] = self.vscrollbar.value
         self.sbox.reupdate()
 
     def _hscrollbar_changed(self, xxx):
-        #x = (self.widget.rect.w - self.sbox.rect.w) * self.hscrollbar.value / 1000
+        #x = (self.widget.rect.w - self.sbox.rect.w) * self.hscrollbar.value // 1000
         #if x >= 0: self.sbox.offset[0] = -x
         self.sbox.offset[0] = self.hscrollbar.value
         self.sbox.reupdate()

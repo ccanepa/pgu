@@ -105,7 +105,7 @@ class Tilevid(Vid):
                  s.updated = 1
             if s.updated:
                 r = s._irect
-                y = max(0,r.y/th)
+                y = max(0,r.y//th)
                 yy = min(h,r.bottom // th + 1)
                 while y < yy:
                     x = max(0,r.x // tw)

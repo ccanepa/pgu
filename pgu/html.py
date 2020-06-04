@@ -410,7 +410,7 @@ class _html(HTMLParser):
     def start_hr(self, attrs):
         self.do_hr(attrs)
     def do_hr(self, attrs):
-        h = self.font.size(" ")[1]/2
+        h = self.font.size(" ")[1]//2
 
         r = self.attrs_to_map(attrs)
         params = self.map_to_params(r)

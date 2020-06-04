@@ -107,7 +107,7 @@ def run(g):
         ##In run(), each frame I make sure to run the codes that are on the far
         ##right of the screen.
         ##::
-        g.run_codes(cdata,(g.view.right/TW,0,1,17))
+        g.run_codes(cdata,(g.view.right//TW,0,1,17))
         ##
         
         g.loop()

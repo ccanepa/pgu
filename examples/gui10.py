@@ -123,20 +123,20 @@ def render(dt):
 
     colors = []
     for i in range(256,0,-1):
-        colors.append((color[0]*i/256,color[1]*i/256,color[2]*i/256))
+        colors.append((color[0]*i//256,color[1]*i//256,color[2]*i//256))
         
     n = 0
     for x,y,z in stars:
         if warp:
             z1 = max(1,z + speed*2)
-            x1 = x*256/z1
-            y1 = y*256/z1
-            xx1,yy1 = x1+WIDTH/2,y1+HEIGHT/2
+            x1 = x*256//z1
+            y1 = y*256//z1
+            xx1,yy1 = x1+WIDTH//2,y1+HEIGHT//2
     
-        x = x*256/z
-        y = y*256/z
-        xx,yy = x+WIDTH/2,y+HEIGHT/2
-        c = min(255,z * 255 / dist)
+        x = x*256//z
+        y = y*256//z
+        xx,yy = x+WIDTH//2,y+HEIGHT//2
+        c = min(255,z * 255 // dist)
         col = colors[int(c)]
 
         if warp:

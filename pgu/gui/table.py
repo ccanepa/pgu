@@ -218,7 +218,7 @@ class Table(container.Container):
 
         #distribute extra space if necessary for wide colspanning/rowspanning
         def _table_div(a, b, c):
-            v, r = a/b, a%b
+            v, r = a//b, a%b
             if r != 0 and (c%b)<r: v += 1
             return v
 
@@ -251,14 +251,14 @@ class Table(container.Container):
         if (w > 0 and w < self.style.width):
             amount = (self.style.width - w)/float(w)
             for n in range(0, len(columnsizes)):
-                columnsizes[n] += columnsizes[n] * amount
+                columnsizes[n] += int(columnsizes[n] * amount)
 
         # Do the same for the table height
         h = sum(rowsizes)
         if (h > 0 and h < self.style.height):
             amount = (self.style.height - h) / float(h)
             for n in range(0, len(rowsizes)):
-                rowsizes[n] += rowsizes[n] * amount
+                rowsizes[n] += int(rowsizes[n] * amount)
 
         #set the widget's position by calculating their row/column x/y offset
         cellpositions = [[[sum(columnsizes[0:cell]), sum(rowsizes[0:row])] for cell in range(self.getColumns())] for row in range(self.getRows())]
@@ -334,7 +334,7 @@ class _Table_td(container.Container):
 
         dx = width-w.rect.w
         dy = height-w.rect.h
-        w.rect.x = (self.style.align+1)*dx/2
-        w.rect.y = (self.style.valign+1)*dy/2
+        w.rect.x = (self.style.align+1)*dx//2
+        w.rect.y = (self.style.valign+1)*dy//2
 
         return width, height

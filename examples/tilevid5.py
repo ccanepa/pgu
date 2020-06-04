@@ -113,12 +113,12 @@ def enemy_move_line(g,s):
     
 def enemy_move_sine(g,s):
     s.rect.x -= 2
-    s.rect.y = s.origin.y + 65*math.sin((g.frame-s.frame)/10.0)
+    s.rect.y = s.origin.y + int(65*math.sin((g.frame-s.frame)/10.0))
     
 def enemy_move_circle(g,s):
     s.origin.x -= 1
-    s.rect.y = s.origin.y + 50*math.sin((g.frame-s.frame)/10.0)
-    s.rect.x = s.origin.x + 50*math.cos((g.frame-s.frame)/10.0)
+    s.rect.y = s.origin.y + int(50*math.sin((g.frame-s.frame)/10.0))
+    s.rect.x = s.origin.x + int(50*math.cos((g.frame-s.frame)/10.0))
 ##
         
 def tile_block(g,t,a):
@@ -225,7 +225,7 @@ def run(g):
         ##::
         if not g.pause:
             g.view.x += SPEED
-            g.run_codes(cdata,(g.view.right/TW,0,1,17))
+            g.run_codes(cdata,(g.view.right//TW,0,1,17))
             
             g.loop()
     

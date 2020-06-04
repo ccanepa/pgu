@@ -132,7 +132,7 @@ def run(g):
             if e.type is KEYDOWN and e.key == K_ESCAPE: g.quit = 1
             
         g.view.x += SPEED
-        g.run_codes(cdata,(g.view.right/TW,0,1,17))
+        g.run_codes(cdata,(g.view.right//TW,0,1,17))
         
         g.loop()
 

@@ -180,7 +180,7 @@ class Painter(gui.Widget):
         if self.state == 0: return
         img = self.cuzco
         self.overlay.fill((0,0,0,0))
-        self.overlay.blit(img,(e.pos[0]-img.get_width()/2,e.pos[1]-img.get_height()/2))
+        self.overlay.blit(img,(e.pos[0]-img.get_width()//2,e.pos[1]-img.get_height()//2))
         self.repaint()
     def cuzco_up(self,e):
         self.state = 0

@@ -25,10 +25,10 @@ class _slider(widget.Widget):
         self.value = self.value
         r = pygame.rect.Rect(0,0,self.style.width,self.style.height)
         if self.orient == _SLIDER_HORIZONTAL:
-            r.x = (self.value-self.min) * (r.w-self.size) / max(1,self.max-self.min);
+            r.x = (self.value-self.min) * (r.w-self.size) // max(1,self.max-self.min);
             r.w = self.size;
         else:
-            r.y = (self.value-self.min) * (r.h-self.size) / max(1,self.max-self.min);
+            r.y = (self.value-self.min) * (r.h-self.size) // max(1,self.max-self.min);
             r.h = self.size;
             
         self.bar = r
@@ -58,10 +58,10 @@ class _slider(widget.Widget):
                     rel = e.pos[0]-self.grab[0],e.pos[1]-self.grab[1]
                     if self.orient == _SLIDER_HORIZONTAL:
                         d = (r.w - self.size)
-                        if d != 0: self.value = self.grab_value + ((self.max-self.min) * rel[0] / d)
+                        if d != 0: self.value = self.grab_value + ((self.max-self.min) * rel[0] // d)
                     else:
                         d = (r.h - self.size)
-                        if d != 0: self.value = self.grab_value + ((self.max-self.min) * rel[1] / d)
+                        if d != 0: self.value = self.grab_value + ((self.max-self.min) * rel[1] // d)
                 else:
                     x,y,adj = e.pos[0],e.pos[1],1
                     
@@ -81,11 +81,11 @@ class _slider(widget.Widget):
 
         if adj:
             if self.orient == _SLIDER_HORIZONTAL:
-                d = self.size/2 - (r.w/(self.max-self.min+1))/2
-                self.value = (x-d) * (self.max-self.min) / (r.w-self.size+1) + self.min
+                d = self.size//2 - (r.w//(self.max-self.min+1))//2
+                self.value = (x-d) * (self.max-self.min) // (r.w-self.size+1) + self.min
             else:
-                d = self.size/2 - (r.h/(self.max-self.min+1))/2
-                self.value = (y-d) * (self.max-self.min) / (r.h-self.size+1) + self.min
+                d = self.size//2 - (r.h//(self.max-self.min+1))//2
+                self.value = (y-d) * (self.max-self.min) // (r.h-self.size+1) + self.min
                 
         self.pcls = ""
         if self.container.myhover is self: self.pcls = "hover"
@@ -217,8 +217,8 @@ class HScrollBar(table.Table):
         ww += xr+xl
 
         self.slider.style.width = self.style.width - ww
-        setattr(self.slider,'size',self.size * self.slider.style.width / max(1,self.style.width))
-        #self.slider.size = self.size * self.slider.style.width / max(1,self.style.width)
+        setattr(self.slider,'size',self.size * self.slider.style.width // max(1,self.style.width))
+        #self.slider.size = self.size * self.slider.style.width // max(1,self.style.width)
         return table.Table.resize(self,width,height)
 
     @property
@@ -323,7 +323,7 @@ class VScrollBar(table.Table):
         hh += xt+xb
 
         self.slider.style.height = self.style.height - hh
-        setattr(self.slider,'size',self.size * self.slider.style.height / max(1,self.style.height))
+        setattr(self.slider,'size',self.size * self.slider.style.height // max(1,self.style.height))
         return table.Table.resize(self,width,height)
         
     def __setattr__(self,k,v):

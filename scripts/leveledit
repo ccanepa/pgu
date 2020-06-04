@@ -296,7 +296,7 @@ def hex_image(self):
     if not hasattr(self,'tiles_h'): self.tiles_h = 256
     rimg = pygame.Surface((self.tiles_w,self.tiles_h)).convert_alpha()
     rimg.fill((0,0,0,0))
-    w,h = self.tiles_w / self.tile_w, self.tiles_h / self.tile_h
+    w,h = self.tiles_w // self.tile_w, self.tiles_h // self.tile_h
     n = 0
     fnt = pygame.font.SysFont("helvetica",self.tile_h-1)
     for y in range(0,h):
@@ -389,10 +389,10 @@ class vwrap(gui.Table):
         for x,y in corners:
             minx,miny,maxx,maxy = min(minx,x),min(miny,y),max(maxx,x),max(maxy,y)
 
-        minx -= w/2
-        maxx -= w/2
-        miny -= h/2
-        maxy -= h/2
+        minx -= w//2
+        maxx -= w//2
+        miny -= h//2
+        maxy -= h//2
         
         self.vs = e = gui.VSlider(0,miny,maxy,sw*4,width=sw,height=h-sw)
         self.add(e,1,0)
@@ -441,9 +441,9 @@ class vdraw(gui.Widget):
         s = pygame.Surface((self.rect.w,self.rect.h)).convert_alpha()
         s.fill((0,0,0,0))
         for x in range(0,app.view_w):
-            pygame.draw.line(s,(0,0,0),(self.rect.w*x/app.view_w,0),(self.rect.w*x/app.view_w,self.rect.h))
+            pygame.draw.line(s,(0,0,0),(self.rect.w*x//app.view_w,0),(self.rect.w*x//app.view_w,self.rect.h))
         for y in range(0,app.view_h):
-            pygame.draw.line(s,(0,0,0),(0,self.rect.h*y/app.view_h),(self.rect.w,self.rect.h*y/app.view_h))
+            pygame.draw.line(s,(0,0,0),(0,self.rect.h*y//app.view_h),(self.rect.w,self.rect.h*y//app.view_h))
         self.grid = s
         
         self.pos = 0,0
@@ -499,7 +499,7 @@ class vdraw(gui.Widget):
         
         #s.blit(self.grid,(0,0))
         #r = app.select
-        #pygame.draw.rect(s,(255,255,255,128),Rect(r.x*self.rect.w/app.view_w,r.y*self.rect.h/app.view_h,r.w*self.rect.w/app.view_w,r.h*self.rect.h/app.view_h),4)
+        #pygame.draw.rect(s,(255,255,255,128),Rect(r.x*self.rect.w//app.view_w,r.y*self.rect.h//app.view_h,r.w*self.rect.w//app.view_w,r.h*self.rect.h//app.view_h),4)
         
     def event(self,e):
         if e.type is MOUSEMOTION:
@@ -625,7 +625,7 @@ class vdraw(gui.Widget):
             self.repaint()
         return tx,ty
         
-        x,y = e.pos[0]/app.tile_w,e.pos[1]/app.tile_h
+        x,y = e.pos[0]//app.tile_w,e.pos[1]//app.tile_h
         x = min(max(0,x),app.view_w-1)
         y = min(max(0,y),app.view_h-1)
         return x,y
@@ -637,7 +637,7 @@ class vdraw(gui.Widget):
         
         w = app.tile_w
         h = app.tile_h
-        x,y = (e.pos[0]+w/2)/app.tile_w,(e.pos[1]+h/2)/app.tile_h
+        x,y = (e.pos[0]+w//2)//app.tile_w,(e.pos[1]+h//2)//app.tile_h
         x = min(max(0,x),app.view_w)
         y = min(max(0,y),app.view_h)
         return x,y

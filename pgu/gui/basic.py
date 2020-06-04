@@ -147,9 +147,9 @@ class Image(widget.Widget):
         sw,sh = self.style.width,self.style.height
 
         if sw and not sh:
-            iw,ih = sw,ih*sw/iw
+            iw,ih = sw,ih*sw//iw
         elif sh and not sw:
-            iw,ih = iw*sh/ih,sh
+            iw,ih = iw*sh//ih,sh
         elif sw and sh:
             iw,ih = sw,sh
 
