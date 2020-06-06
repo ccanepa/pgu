@@ -1,48 +1,13 @@
-PGU - PyGame Utilities
-======================
+PGU
+===
 
-Install
---------
+This is a friendly fork of https://github.com/parogers/pgu made so it can run in py37+
 
-pip install pygame-pgu
+Anyone is wellcomed to chery pick anything they want.
 
+Read more at https://github.com/ccanepa/pgu/issues/1
 
-*NOTE* PGU is in need of more contributors. Email me (peter.rogers@gmail.com)
-or jsobueno@gmail.com if you're interested in evolving the codebase.
-
-A collection of handy utilities and libraries created by Phil Hassey, released
-under the LGPL v2.1 (see LICENSE.txt for more details).
-
-The current PGU code base:
-
-    https://github.com/parogers/pgu
-
-Old website location:
-
-    http://www.imitationpickles.org/pgu/
-    philhassey@yahoo.com
-
-Modules:
-
-    tileedit  -- edit tga based images
-    leveledit -- edit tga based levels in tile, isometric, and hexagonal formats
-    tganew    -- create tga files
-    levelfancy-- prettyify your levels
-
-    gui     -- gui with standard widget, dialogs, html, connections, and themes
-    html    -- html rendering utilities
-    layout  -- layout utilities
-    text    -- text rendering utilities
-
-    tilevid -- sprite and tile engine
-    isovid  -- isometric sprite and tile engine
-    hexvid  -- hexagonal sprite and tile engine (alpha)
-    engine  -- state engine
-    timer   -- a timer for games with set-rate FPS
-    high    -- high score tracking
-    ani     -- animation helpers
-    algo    -- helpful pathfinding algoritms
-    fonts   -- font wrappers, bitmapped fonts
+Not available in Pypi
 
 Vera.ttf is from:
 
@@ -71,6 +36,9 @@ Example scripts can be found in the examples directory.
 THANKS
 ======
 
+* Phil Hassey, which wrote the library
+* Peter Rogers, maintainer after Phil left
+ 
 * gal koren -- bugs, draft of html.HTML, suggestions, bug finding, ScrollArea widget, FileDialog, List, Console
 * fdarling -- testing, suggestions, bug fixing, code cleanup, menus & slider UI fixes, new Table class, reorganization of pgu.gui into a package
 * richard jones -- packaging, suggestions, code cleanup
