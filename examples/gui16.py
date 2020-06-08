@@ -26,11 +26,15 @@ def c_add(value):
     w = value
     c.add(item,120,45)
     w.value = gui.Label('Remove')
+    # Note - we need to disconnect the old signal handler first
+    w.disconnect(gui.CLICK)
     w.connect(gui.CLICK,c_remove,w)
     
 def c_remove(value):
     w = value
     c.remove(item)
+    # Note - we need to disconnect the old signal handler first
+    w.disconnect(gui.CLICK)
     w.value = gui.Label('Add')
     w.connect(gui.CLICK,c_add,w)
 
