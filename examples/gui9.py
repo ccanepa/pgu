@@ -297,7 +297,7 @@ class App(gui.Desktop):
 
         self.painter = Painter(width=c.rect.w-mode.rect.w-spacer*2,height=c.rect.h-menus.rect.h-spacer*2,style={'border':1})
         c.add(self.painter,mode.rect.w+spacer,menus.rect.h+spacer)
-        self.painter.init({'width':256,'height':256,'color':'#ffffff'})
+        self.painter.init({'width':256,'height':256,'color':'#ff00ffff'})
         self.painter.rect.w,self.painter.rect.h = self.painter.resize()
         #self.painter._resize()
 
