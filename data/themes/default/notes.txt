@@ -1,8 +1,17 @@
-dot and box.xcf:
+- This is a full style, that is, it covers all stock widgets.
+- All the files referenced in style.ini are present.
+- This theme was built by first drawing a set of base images, then
+  running generate.py to produce some more images.
+- They are some files not directly referenced in the style.ini, 
+  still kept here for the benefit of generate.py
+
+---
+
+dot and box.xcf: probably used by the artist as base to generate the
+basic image elements. 
 
 color -170
 
 .down
 .hover +64 brightness
 .normal, grayscale +127 brightness, +48 contrast
-

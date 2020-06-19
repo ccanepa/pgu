@@ -1,0 +1,14 @@
+- This is a full style, that is it covers all stock widgets.
+- All the files referenced in style.ini are present.
+- They are some image files not referenced in the style.ini, 
+    box.down.png
+    box.normal.png
+    console.input.focus.png
+    console.input.normal.png
+    console.png
+- All the keys in this theme style.ini are also in the default theme,
+  but there's a number of keys in default not present here.
+  As a consequence, no blur (hover) effect is rendered, nor 'down' (clicked)
+  Unsure if this is a design decision or a work unfinished.
+- Being based on gray colors, and with not blur, an user may have
+  problem to distinguish between a disabled widget and a normal widget.
