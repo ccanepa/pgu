@@ -1,0 +1,3 @@
+- this is a partial theme which provides some icons
+  for the toolbar used in leveledit
+  
