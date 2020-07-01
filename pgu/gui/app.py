@@ -175,6 +175,8 @@ class App(container.Container):
                     'pos' : ev.pos})
                 self.send(sub.type,sub)
                 container.Container.event(self,sub)
+        if ev.type == VIDEOEXPOSE:
+            self.chsize()
     
     def loop(self):
         """Performs one iteration of the PGU application loop, which
