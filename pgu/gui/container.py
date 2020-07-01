@@ -232,7 +232,7 @@ class Container(widget.Widget):
             if (sub):
                 used = w._event(sub)
 
-        if not used and e.type is KEYDOWN:
+        if not used and e.type == KEYDOWN:
             if e.key is K_TAB and self.myfocus:
                 if not (e.mod & KMOD_SHIFT):
                     self.myfocus.next()

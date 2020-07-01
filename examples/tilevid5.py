@@ -208,15 +208,15 @@ def run(g):
     
     while not g.quit:
         for e in pygame.event.get():
-            if e.type is QUIT: g.quit = 1
-            if e.type is KEYDOWN and e.key == K_ESCAPE: g.quit = 1
+            if e.type == QUIT: g.quit = 1
+            if e.type == KEYDOWN and e.key == K_ESCAPE: g.quit = 1
             ##In run(), in the event loop, checking for F10 for full screen, RETURN for pause.
             ##::
-            if e.type is KEYDOWN and e.key == K_F10:
+            if e.type == KEYDOWN and e.key == K_F10:
                 #g.screen = pygame.display.set_mode((SW,SH),FULLSCREEN|HWSURFACE|DOUBLEBUF)
                 pygame.display.toggle_fullscreen()
                 
-            if e.type is KEYDOWN and e.key == K_RETURN:
+            if e.type == KEYDOWN and e.key == K_RETURN:
                 g.pause ^= 1
             ##
 
