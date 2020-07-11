@@ -96,9 +96,10 @@ class App(container.Container):
         self.style.width,self.style.height = size
         self.rect.size = size
         self.rect.topleft = (0, 0)
-        
-        self.widget.rect.topleft = (0, 0)
-        self.widget.rect.size = self.widget.resize(*size)
+
+        if self.widget is not None:
+            self.widget.rect.topleft = (0, 0)
+            self.widget.rect.size = self.widget.resize(*size)
 
         for w in self.windows:
             w.rect.size = w.resize()
@@ -130,12 +131,12 @@ class App(container.Container):
         
         self.resize()   
         
-        w = self.widget     
-        
-        self.widgets = []
-        self.widgets.append(w)
-        w.container = self
-        self.focus(w)
+        if self.widget is not None:
+            w = self.widget     
+            
+            self.widgets.append(w)
+            w.container = self
+            self.focus(w)
 
         # Set a default key repeat rate (makes text input more intuitive)
         pygame.key.set_repeat(500, 30)
