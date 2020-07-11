@@ -178,6 +178,9 @@ class App(container.Container):
                 container.Container.event(self,sub)
         if ev.type == VIDEOEXPOSE:
             self.chsize()
+        if ev.type == KEYUP and ev.key == pguglobals.key_app_quit:
+            # quit the app.run loop
+            self._quit = True
     
     def loop(self):
         """Performs one iteration of the PGU application loop, which
