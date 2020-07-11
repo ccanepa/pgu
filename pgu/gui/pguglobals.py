@@ -7,3 +7,6 @@
 # A global reference to the application instance (App class)
 app = None
 
+# default key to quit app loop (for debug / develop set to K_F12 by example)
+key_app_quit = None
+
