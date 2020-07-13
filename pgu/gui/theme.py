@@ -186,15 +186,15 @@ class Theme(object):
         o = (cls, pcls, attr)
 
         v = self._get(cls, pcls, attr)
-        if v:
+        if v is not None:
             return v
 
         v = self._get(cls, "", attr)
-        if v:
+        if v is not None:
             return v
 
         v = self._get("default", "", attr)
-        if v:
+        if v is not None:
             return v
 
         # The style doesn't exist
