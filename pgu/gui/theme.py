@@ -43,6 +43,8 @@ class Theme(object):
         self.config = {}
         self._loaded = []
         self.cache = {}
+        # namecache only used in pgu.gui dev & debug
+        self.namecache = {}
         self._preload(dirs)
         pygame.font.init()
 
@@ -130,25 +132,30 @@ class Theme(object):
             return self.cache[key]
 
         (dname, vals) = self.config[key]
+        font_size = None
 
         if (os.path.splitext(vals[0].lower())[1] in self.image_extensions):
             # This is an image attribute
             v = pygame.image.load(os.path.join(dname, vals[0]))
+            stype = "img"
 
         elif (attr == "color" or attr == "background"):
             # This is a color value
             v = parse_color(vals[0])
+            stype = "color"
 
         elif (attr == "font"):
             # This is a font value
             name = vals[0]
-            size = int(vals[1])
+            font_size = int(vals[1])
             if (name.endswith(".ttf")):
                 # Load the font from a file
-                v = pygame.font.Font(os.path.join(dname, name), size)
+                v = pygame.font.Font(os.path.join(dname, name), font_size)
+                stype = "font_file"
             else:
                 # Must be a system font
-                v = pygame.font.SysFont(name, size)
+                v = pygame.font.SysFont(name, font_size)
+                stype = "font_sys"
 
         else:
             try:
@@ -156,6 +163,8 @@ class Theme(object):
             except ValueError:
                 v = vals[0]
         self.cache[key] = v
+        u = vals[0] if font_size is None else "%s,%s" % (vals[0],vals[1])  
+        self.namecache[key] = (stype, u)
         return v
 
     # TODO - obsolete, use 'getstyle' below instead
@@ -188,15 +197,15 @@ class Theme(object):
         v = self._get(cls, pcls, attr)
         if v is not None:
             return v
-
+        self.namecache[o] = ("@ind", (cls, "", attr))
         v = self._get(cls, "", attr)
         if v is not None:
             return v
-
+        self.namecache[(cls, "", attr)] = ("@ind", ("default", "", attr))
         v = self._get("default", "", attr)
         if v is not None:
             return v
-
+        self.namecache[("default", "", attr)] = ("!undefined", 0)
         # The style doesn't exist
         self.cache[o] = 0
         raise StyleError("Style not defined: '%s', '%s', '%s'" % o)
