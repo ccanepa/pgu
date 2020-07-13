@@ -163,7 +163,7 @@ class Theme(object):
             except ValueError:
                 v = vals[0]
         self.cache[key] = v
-        u = vals[0] if font_size is None else "%s,%s" % (vals[0],vals[1])  
+        u = vals[0] if font_size is None else "%s,%s" % (vals[0],vals[1])
         self.namecache[key] = (stype, u)
         return v
 
@@ -197,10 +197,13 @@ class Theme(object):
         v = self._get(cls, pcls, attr)
         if v is not None:
             return v
+        #?si la pcls era "" como en Spacer deberia saltear
         self.namecache[o] = ("@ind", (cls, "", attr))
         v = self._get(cls, "", attr)
         if v is not None:
             return v
+        #?tambien, si la 'cls' no se pasa como arg o la subclass no lo define,
+        #entonces el codigo de widget hace que sea 'default', deberia saltear
         self.namecache[(cls, "", attr)] = ("@ind", ("default", "", attr))
         v = self._get("default", "", attr)
         if v is not None:
