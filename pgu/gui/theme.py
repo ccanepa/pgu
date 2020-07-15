@@ -197,19 +197,22 @@ class Theme(object):
         v = self._get(cls, pcls, attr)
         if v is not None:
             return v
-        #?si la pcls era "" como en Spacer deberia saltear
-        self.namecache[o] = ("@ind", (cls, "", attr))
-        v = self._get(cls, "", attr)
+        # try to fallback to (cls, "", attr)
+        fallback = (cls, "", attr)
+        if pcls != "":
+            self.namecache[o] = ("@ind", fallback)
+            v = self._get(*fallback)
         if v is not None:
             return v
-        #?tambien, si la 'cls' no se pasa como arg o la subclass no lo define,
-        #entonces el codigo de widget hace que sea 'default', deberia saltear
-        self.namecache[(cls, "", attr)] = ("@ind", ("default", "", attr))
-        v = self._get("default", "", attr)
+        # try to fallback to ("default", "", attr)
+        fallback = ("default", "", attr)
+        if cls != "default":
+            self.namecache[o] = ("@ind", fallback)
+            v = self._get(*fallback)
         if v is not None:
             return v
-        self.namecache[("default", "", attr)] = ("!undefined", 0)
         # The style doesn't exist
+        self.namecache[o] = ("!undefined", 0)
         self.cache[o] = 0
         raise StyleError("Style not defined: '%s', '%s', '%s'" % o)
 
