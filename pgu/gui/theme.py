@@ -160,8 +160,10 @@ class Theme(object):
         else:
             try:
                 v = int(vals[0])
+                stype = "int"
             except ValueError:
                 v = vals[0]
+                stype = "str"
         self.cache[key] = v
         u = vals[0] if font_size is None else "%s,%s" % (vals[0],vals[1])
         self.namecache[key] = (stype, u)
