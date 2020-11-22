@@ -1,4 +1,4 @@
-"""<title>tutorial on how to load tiles and levels</title>
+r"""<title>tutorial on how to load tiles and levels</title>
 
 <p>The following tutorial demonstrates how to use tileedit and leveledit via the
 command line.  You can just as easily do all these things via the in-program

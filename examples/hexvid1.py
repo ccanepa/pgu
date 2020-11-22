@@ -1,4 +1,4 @@
-"""<title>tutorial on how to load tiles and levels with hexvid</title>
+r"""<title>tutorial on how to load tiles and levels with hexvid</title>
 <p>
 you should go through the tilevid tutorials before you view these.  hexvid
 is just another vid interface.

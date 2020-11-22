@@ -1,4 +1,4 @@
-"""<title>tutorial on how to load tiles and levels with isovid.</title>
+r"""<title>tutorial on how to load tiles and levels with isovid.</title>
 
 <p>you should go through the tilevid tutorials before you view these.  isovid
 is just another vid interface.
